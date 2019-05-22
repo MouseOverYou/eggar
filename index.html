@@ -1,0 +1,53 @@
+<html>
+
+<head>
+    <title>KINDER EGG</title>
+    <!-- We've included a slightly modified version of A-Frame, which fixes some polish concerns -->
+    <script src="//cdn.8thwall.com/web/aframe/8frame-0.8.2.min.js"></script>
+    <!-- 8thWall Web - Replace the app key here with your own app key -->
+    <script async src="//apps.8thwall.com/xrweb?appKey=orBHMqU5dA61iJo4TR6W9eJRY86Pgn8rYLliHCIEimp3ljJYMRoAXmiy7KEdy0JEidby2M"></script>
+
+    <script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v5.0.1/dist/aframe-extras.min.js"></script>
+    <script src="https://unpkg.com/aframe-animation-component@^4.1.2/dist/aframe-animation-component.min.js"></script>
+    <link rel="stylesheet" href="index.css">
+    <script src="js/control.js"></script>
+    <script src="js/play02.js"></script>
+</head>
+
+<body>
+    <img id="btn1" src="assets/btn_1.jpg" class="btn_style1" onclick="myFunction(this.id)"></img>
+    <img id="btn2" src="assets/btn_2.jpg" class="btn_style1" onclick="myFunction(this.id)"></img>
+    <img  id="recenterButtonContainer" src="assets/reposition.png" class="btn_style1" ></img>
+    <img  id="recenterButtonContainer" src="assets/look-outline.png" class="btn_style1" ></img>
+    <button type="button" id="myBtn" class="btn_style1" onclick="myFunction(this.id)">Play</button>
+
+    <a-scene xrweb do-something-once-loaded tap-place recenter>
+        <a-asset>
+            <a-asset-item id="Egg" src="assets/EggChar.glb"></a-asset-item>
+            <img id="glasses" src="assets/glasses.png"></img>
+            <img id="groundTex" src="assets/ground_kids.jpg"></img>
+            <audio id="taki" src="assets/takitaki.mp3" preload="auto"></audio>
+            <audio id="runSound" src="assets/run.flac" preload="auto"></audio>
+            <video id="Video" src="assets/KinderVideo.mp4" autoplay loop="true"></video>
+        </a-asset>
+        <a-camera position="0 2 0" raycaster="objects: .cantap" cursor="
+          fuse: false;
+          rayOrigin: mouse;">
+        </a-camera>
+        <a-entity id="anchor">
+
+        </a-entity> <!-- /anchor -->
+
+        <a-video id="video" src="#Video" width="1.6" height=".9" position="0 2 -2"></a-video>
+        <a-entity light="castShadow: true; shadowMapHeight: 2048; shadowMapWidth: 2048" position="1 1 1"></a-entity>
+        <a-entity id="eggparent" position="0 0 -4" animation sound="src: #taki; loop: true; preload: auto">
+            <a-entity id="eggchar" class=".myclass" gltf-model="#Egg" scale="0.05 0.05 0.05" animation-mixer="clip: idle; crossFadeDuration: 0.5;"
+                shadow="castShadow: true" sound="src: #runSound; on: click; loop: true; preload: auto"></a-entity>
+        </a-entity>
+
+        <a-box id="ground" class="cantap" position="0 -1 -4" rotation="0 0 0" scale="100 2 100" material="color: #ffffff; transparent: true; opacity: 0.0"
+            shadow="receive: true" shadow-material></a-box>
+    </a-scene>
+</body>
+
+</html>

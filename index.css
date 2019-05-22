@@ -1,0 +1,10 @@
+.btn_style1 {
+    z-index: 5;
+    position: relative;
+    height: auto; 
+    width: auto; 
+    max-width: 50px; 
+    max-height: auto;
+    left: 10px; 
+    top: 10px;
+}
